@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KachowTasks — Premium To-Do</title>
+  <meta name="description" content="A beautiful, feature-rich to-do list app to manage your daily tasks with style." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient background blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">⚡</span>
+          <span class="logo-text">KachowTasks</span>
+        </div>
+        <div class="header-stats">
+          <div class="stat-pill" id="totalPill">
+            <span class="stat-num" id="totalCount">0</span>
+            <span class="stat-label">Total</span>
+          </div>
+          <div class="stat-pill done" id="donePill">
+            <span class="stat-num" id="doneCount">0</span>
+            <span class="stat-label">Done</span>
+          </div>
+        </div>
+      </div>
+      <!-- Progress bar -->
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p class="progress-label" id="progressLabel">No tasks yet — add something!</p>
+    </header>
+
+    <!-- Input Section -->
+    <section class="input-section">
+      <form id="todoForm" autocomplete="off">
+        <div class="input-row">
+          <div class="input-group">
+            <span class="input-icon">✏️</span>
+            <input
+              type="text"
+              id="taskInput"
+              placeholder="What needs to be done?"
+              maxlength="120"
+            />
+          </div>
+          <select id="prioritySelect">
+            <option value="low">🟢 Low</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="high">🔴 High</option>
+          </select>
+          <select id="categorySelect">
+            <option value="general">📌 General</option>
+            <option value="work">💼 Work</option>
+            <option value="personal">🏠 Personal</option>
+            <option value="health">💪 Health</option>
+            <option value="learning">📚 Learning</option>
+          </select>
+          <button type="submit" class="add-btn" id="addBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            Add Task
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Filter / Sort Bar -->
+    <section class="filter-bar">
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="active">Active</button>
+        <button class="filter-tab" data-filter="completed">Completed</button>
+        <button class="filter-tab" data-filter="high">🔴 High</button>
+        <button class="filter-tab" data-filter="medium">🟡 Medium</button>
+        <button class="filter-tab" data-filter="low">🟢 Low</button>
+      </div>
+      <div class="filter-actions">
+        <button class="icon-btn" id="sortBtn" title="Sort">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M7 12h10M11 18h2"/></svg>
+          Sort
+        </button>
+        <button class="icon-btn danger" id="clearDoneBtn" title="Clear completed">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          Clear Done
+        </button>
+      </div>
+    </section>
+
+    <!-- Task List -->
+    <main class="task-list-wrapper">
+      <ul class="task-list" id="taskList">
+        <!-- Tasks rendered here by JS -->
+      </ul>
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">🎯</div>
+        <h2>All clear!</h2>
+        <p>Add a task above to get started.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
